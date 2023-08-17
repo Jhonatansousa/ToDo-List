@@ -13,7 +13,7 @@ interface taskProps {
 export const Task = ({ content, onDeleteComment, onCheckTask, onDecreaseValueCompleted }: taskProps) => {
 
   const [checked, setChecked] = useState(true)
-
+  // function to change task status
   function handleCheck() {
     setChecked(!checked)
     onCheckTask(checked)
@@ -23,7 +23,6 @@ export const Task = ({ content, onDeleteComment, onCheckTask, onDecreaseValueCom
   function handleDeleteComment() {
     onDeleteComment(content)
     onDecreaseValueCompleted(checked)
-
   }
 
   return (

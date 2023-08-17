@@ -53,6 +53,10 @@
   transition: .1s;
 }
 
+.NewTask button:focus {
+  outline: 2px solid var(--gray-100);
+}
+
 .NewTask button:not(:disabled):hover {
   background: var(--blue);
   cursor: pointer;
