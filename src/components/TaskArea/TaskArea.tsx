@@ -12,10 +12,14 @@ export const TaskArea = () => {
   const [tasks, setTasks] = useState([
     'Beber água', 'Ir para a academia', 'Fazer uma lista de compras'
   ])
+
+
   // function to observe input
   function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
     setNewTaskText(event?.target.value)
   }
+
+
   // button to create a new task
   function handleCreateNewTask() {
     if (newTaskText.length > 0) {
@@ -31,6 +35,22 @@ export const TaskArea = () => {
       return task !== commentToDelete
     })
     setTasks(commentsWithoutDeleteOne)
+  }
+
+  // useState to view how much task are completed
+  const [completedTasks, setCompletedTasks] = useState(0);
+
+  //function to complete task
+  function countCheckTask(isChecked: boolean) {
+    if (isChecked) {
+      setCompletedTasks(prevCompletedTasks => prevCompletedTasks + 1)
+    } else setCompletedTasks(prevCompletedTasks => prevCompletedTasks - 1)
+  }
+  function decreaseValueCompleted(isChecked: boolean) {
+    if (!isChecked) {
+
+      setCompletedTasks(completedTasks - 1)
+    }
   }
 
 
@@ -69,7 +89,7 @@ export const TaskArea = () => {
 
 
         <div className='taskCompleted'>
-          <strong>Concluídas <span>20</span></strong>
+          <strong>Concluídas <span>{completedTasks}</span></strong>
         </div>
       </section>
 
@@ -80,6 +100,8 @@ export const TaskArea = () => {
               key={task}
               content={task}
               onDeleteComment={deleteComment}
+              onCheckTask={countCheckTask}
+              onDecreaseValueCompleted={decreaseValueCompleted}
             />
           )
         })}

@@ -6,19 +6,24 @@ import { useState } from 'react'
 interface taskProps {
   content: string;
   onDeleteComment: (content: string) => void;
+  onCheckTask: (checked: boolean) => void;
+  onDecreaseValueCompleted: (checked: boolean) => void;
 }
 
-export const Task = ({ content, onDeleteComment }: taskProps) => {
+export const Task = ({ content, onDeleteComment, onCheckTask, onDecreaseValueCompleted }: taskProps) => {
 
   const [checked, setChecked] = useState(true)
 
   function handleCheck() {
     setChecked(!checked)
+    onCheckTask(checked)
   }
 
   // function to delete comment
   function handleDeleteComment() {
     onDeleteComment(content)
+    onDecreaseValueCompleted(checked)
+
   }
 
   return (
