@@ -25,9 +25,11 @@ export const TaskArea = () => {
       handleCreateNewTask()
     }
   }
-  // button to create a new task
+  // button to create a new task and remove space character with trim()
   function handleCreateNewTask() {
-    if (newTaskText.length > 0) {
+    const trimmedText = newTaskText.trim();
+
+    if (newTaskText.length > 0 && trimmedText.length !== 0) {
       setTasks([...tasks, newTaskText])
       setNewTaskText('')
     }
@@ -69,7 +71,7 @@ export const TaskArea = () => {
           required
         />
         <button
-          disabled={isNewTaskEmpty}
+          disabled={isNewTaskEmpty || newTaskText.trim().length === 0}
           onClick={handleCreateNewTask}
         >
           Criar
