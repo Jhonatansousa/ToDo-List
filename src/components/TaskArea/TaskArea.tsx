@@ -87,7 +87,7 @@ export const TaskArea = () => {
 
 
         <div className='taskCompleted'>
-          <strong>Concluídas <span>{completedTasks}</span></strong>
+          <strong>Concluídas <span>{tasks.length === 0 ? '0' : `${completedTasks} de ${tasks.length}`}</span></strong>
         </div>
       </section>
       {/* task */}
